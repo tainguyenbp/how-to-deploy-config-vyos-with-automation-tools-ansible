@@ -1,0 +1,69 @@
+- name: Config dhcp interface ethernet eth0
+  vyos_config:
+    lines:
+      - set interface ethernet eth0 address dhcp
+    save: yes
+
+- name: Config service ssh ciphers aes192-cbc
+  vyos_config:
+    lines:
+      - set service ssh ciphers aes192-cbc
+    save: yes
+
+- name: Config service community snmp
+  vyos_config:
+    lines:
+      - set service snmp community tainguyen@snmpdv2 authorization ro
+    save: yes
+
+#######################################################################
+# CONFIG FUNCTION SYSTEM
+- name: Delete config system ntp default
+  vyos_config:
+    lines:
+      - delete system ntp
+    save: yes
+
+- name: Config system ntp 192.168.100.1
+  vyos_config:
+    lines:
+      - set system ntp server 192.168.100.1
+    save: yes
+
+- name: Delete config system syslog default
+  vyos_config:
+    lines:
+      - delete system syslog
+    save: yes
+
+- name: Config system syslog global
+  vyos_config:
+    lines:
+      - set system syslog global facility all level notice
+      - set system syslog global facility protocols level debug
+    save: yes
+
+- name: Config system syslog host 192.168.200.1
+  vyos_config:
+    lines:
+      - set system syslog host 192.168.200.1 facility all level notice
+    save: yes
+
+- name: Config system syslog user all
+  vyos_config:
+    lines:
+      - set system syslog user all facility all level emerg
+    save: yes
+
+- name: Delete config system package
+  vyos_config:
+    lines:
+      - delete system package
+    save: yes
+
+- name: Config system time-zone GMT
+  vyos_config:
+    lines:
+      - set system time-zone GMT
+    save: yes
+

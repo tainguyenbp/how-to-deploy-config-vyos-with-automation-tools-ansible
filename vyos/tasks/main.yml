@@ -1,0 +1,5 @@
+- set_fact: role_name=vyos
+
+##################################################
+#### deploy file host
+- include: configure.yml
